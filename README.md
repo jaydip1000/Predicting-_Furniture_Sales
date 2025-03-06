@@ -279,6 +279,42 @@ plt.savefig("Effect of Price & Discount on Sales.png", dpi = 1500 , bbox_inches=
 
 plt.show()
 
+# Model Performance Comparison (Bar Chart)
+
+# Data for models
+models = ["LightGBM", "Ridge Regression"]
+r2_scores = [r2_lgb, r2_ridge]
+
+# Plot
+plt.figure(figsize=(6, 4))
+sns.barplot(x=models, y=r2_scores, palette="viridis")
+plt.title("Model Performance (R² Score)")
+plt.ylabel("R² Score")
+plt.ylim(0, 1)  # R² Score ranges from 0 to 1
+
+plt.savefig("Model Performance (R² Score).png", dpi = 1500 , bbox_inches='tight')
+plt.show()
+
+plt.figure(figsize=(8, 6))
+sns.histplot(df['discount'], bins=30, kde=True, color="purple")
+plt.title("Distribution of Discounts")
+plt.xlabel("Discount (%)")
+plt.ylabel("Frequency")
+
+plt.savefig("Distribution of Discounts.png", dpi = 1500 , bbox_inches='tight')
+
+plt.show()
+
+sns.lmplot(x='originalPrice', y='sold', data=df, scatter_kws={'alpha':0.5}, line_kws={'color': 'red'})
+plt.title("Impact of Original Price on Sales")
+
+plt.savefig("Impact of Original Price on Sales.png", dpi = 1500 , bbox_inches='tight')
+
+plt.show()
+
+sns.pairplot(df, vars=['originalPrice', 'price', 'sold'], kind='kde')
+plt.show()
+
 
 
 
